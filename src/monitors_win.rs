@@ -22,7 +22,7 @@ pub fn build_os_to_ddc_map() -> Result<HashMap<String, Vec<String>>, io::Error> 
                 gdi_name = Some(String::from_utf16_lossy(&monitor_info.szDevice)
                     .trim_end_matches('\0')
                     .to_string());
-                println!("Got monitor GDI {}", gdi_name.as_ref().unwrap()); // SAFETY: Just set to Some.
+                println!("Got GDI {}", gdi_name.as_ref().unwrap()); // SAFETY: Just set to Some.
             }
         }
         

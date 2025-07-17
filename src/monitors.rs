@@ -192,8 +192,29 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_displays() {
-        let monitors = Monitors::new();
+    fn test_get_displays() -> Result<(), io::Error>{
+        let monitors = Monitors::new()?;
+        Ok(())
+    }
+
+    #[test]
+    fn test_dump_diagnostics() -> Result<(), io::Error>{
+        let monitors = Monitors::new()?;
+
+        let displays = &monitors.ddc_displays;
+        for (id, display) in displays {
+            print!("{id} : ");
+            match &display.handle {
+                Handle::WinApi(_) => println!("\tWinApi"),
+                Handle::Nvapi(_) => println!("\tNVAPI"),
+            }
+
+            println!("{:#?}", display.info);
+
+            println!()
+        }
+
+        Ok(())
     }
 
     #[test]
