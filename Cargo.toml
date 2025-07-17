@@ -1,0 +1,17 @@
+[package]
+name = "spotlight"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "spotlight"
+crate-type = ["cdylib"]
+
+[dependencies]
+libmpv-client = { git = "https://github.com/astroftl/libmpv-client" }
+ddc-hi = "0.4"
+mccs-db = "^0.1"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.61", features = ["Win32_Foundation", "Win32_Graphics_Gdi", "Win32_Devices_Display"] }
+ddc-winapi = "0.2"
